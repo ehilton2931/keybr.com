@@ -269,21 +269,21 @@ export const MATRIX: GeometryDict = {
   ThumbClusterLeft1: {
     x: 4.5,
     y: 4,
-    zones: ["thumb", "left", "bottom"],
+    zones: ["thumb", "left", "home"],
   },
   ThumbClusterLeft2: {
     x: 5.5,
     y: 4,
-    zones: ["thumb", "left", "bottom"],
+    zones: ["thumb", "left", "home"],
   },
   ThumbClusterRight1: {
     x: 7.5,
     y: 4,
-    zones: ["thumb", "right", "bottom"],
+    zones: ["thumb", "right", "home"],
   },
   ThumbClusterRight2: {
     x: 8.5,
     y: 4,
-    zones: ["thumb", "right", "bottom"],
+    zones: ["thumb", "right", "home"],
   },
 };
