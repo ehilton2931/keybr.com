@@ -42,9 +42,7 @@ export function makeKeyComponent(
       <circle className={styles.bump} cx={w / 2} cy={h - 5} r={3} />,
     );
   }
-  for (const label of shape.labels) {
-    children.push(makeLabel(label));
-  }
+  let isLabeled: boolean = false;
   const ta = isCodePoint(a);
   const tb = isCodePoint(b);
   const tc = isCodePoint(c);
@@ -53,45 +51,64 @@ export function makeKeyComponent(
   const cd = tc && td && letterName(c) === letterName(d);
   if (ta && !ab) {
     children.push(makeCodePointLabel(a, 10, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (tb && !ab) {
     children.push(makeCodePointLabel(b, 10, 12, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (tc && !cd) {
     children.push(makeCodePointLabel(c, 25, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (td && !cd) {
     children.push(makeCodePointLabel(d, 25, 12, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (ta && ab) {
     children.push(makeCodePointLabel(a, 10, 12, styles.primarySymbol));
+    isLabeled = true;
   }
   if (tc && cd) {
     children.push(makeCodePointLabel(c, 25, 27, styles.primarySymbol));
+    isLabeled = true;
   }
   if (isDead(a)) {
     children.push(makeDeadLabel(a, 10, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isDead(b)) {
     children.push(makeDeadLabel(b, 10, 12, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isDead(c)) {
     children.push(makeDeadLabel(c, 25, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isDead(d)) {
     children.push(makeDeadLabel(d, 25, 12, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isLigature(a)) {
     children.push(makeLigatureLabel(a, 10, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isLigature(b)) {
     children.push(makeLigatureLabel(b, 10, 12, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isLigature(c)) {
     children.push(makeLigatureLabel(c, 25, 27, styles.secondarySymbol));
+    isLabeled = true;
   }
   if (isLigature(d)) {
     children.push(makeLigatureLabel(d, 25, 12, styles.secondarySymbol));
+    isLabeled = true;
+  }
+  if (!isLabeled) {
+    for (const label of shape.labels) {
+      children.push(makeLabel(label));
+    }
   }
   const zoneClassName = zoneClassNameOf(shape);
   function KeyComponent({
